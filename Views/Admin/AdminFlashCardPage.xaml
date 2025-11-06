@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.Admin.AdminFlashCardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AdminFlashCardPage">
+
+    <ContentPage.Resources>
+        <Style x:Key="CardView" TargetType="Frame">
+            <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+            <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="50,0,50,0" />
+            <Setter Property="Background" Value="{StaticResource LightBackground}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="AdminHomeBtn"
+                Clicked="GoToAdminHomePage"
+                Text="Admin Home" />
+            <Button
+                x:Name="FlashcardBtn"
+                Clicked="GoToFlashcardPage"
+                Text="Flashcards" />
+            <Button
+                x:Name="DeckBtn"
+                Clicked="GoToDeckPage"
+                Text="Decks" />
+            <Button
+                x:Name="DeckGroupBtn"
+                Clicked="GoToDeckGroupPage"
+                Text="Deck Groups" />
+            <Button
+                x:Name="UsersBtn"
+                Clicked="GoToUsersPage"
+                Text="Users" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+
+        <StackLayout Grid.ColumnSpan="2" Margin="0,50,0,0">
+            <Label
+                FontAttributes="Bold"
+                FontSize="40"
+                HorizontalOptions="Center"
+                Text="Flashcards"
+                VerticalOptions="Center" />
+            <Label
+                FontSize="12"
+                HorizontalOptions="Center"
+                Text="Select a Flashcard to edit"
+                VerticalOptions="Center" />
+            <SearchBar
+                Margin="0,30,0,0"
+                HorizontalOptions="Center"
+                Placeholder="Search Flashcards"
+                TextChanged="SearchBar_TextChanged"
+                WidthRequest="400" />
+        </StackLayout>
+
+        <ListView
+            x:Name="FlashcardListView"
+            Grid.ColumnSpan="3"
+            Margin="0,200,0,0"
+            BackgroundColor="Transparent"
+            ItemSelected="FlashcardListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame
+                                Padding="0"
+                                HeightRequest="125"
+                                Style="{StaticResource CardView}">
+                                <Grid Padding="0" ColumnDefinitions="125, *">
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="125"
+                                        Source="stockprofileimage.png"
+                                        WidthRequest="125" />
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Padding="10"
+                                        VerticalOptions="Center">
+                                        <Label FontAttributes="Bold" Text="{Binding FlashCardQuestion}" />
+                                        <Label Text="{Binding FlashCardAnswer}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+</ContentPage>

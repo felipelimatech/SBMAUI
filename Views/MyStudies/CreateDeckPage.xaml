@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.MyStudies.CreateDeckPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="CreateDeckPage">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="DashboardBtn"
+                Clicked="GoToDashboardPage"
+                Text="Dashboard" />
+            <Button
+                x:Name="FlashcardBtn"
+                Clicked="GoToFlashcardPage"
+                Text="Flashcards" />
+            <Button
+                x:Name="DeckBtn"
+                Clicked="GoToDeckPage"
+                Text="Decks" />
+            <Button
+                x:Name="DeckGroupBtn"
+                Clicked="GoToDeckGroupPage"
+                Text="Deck Groups" />
+            <Button Clicked="LogOut" Text="Logout" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <Grid
+            ColumnDefinitions="*,*,*"
+            ColumnSpacing="5"
+            RowDefinitions="*,Auto"
+            RowSpacing="0">
+            <Border
+                Grid.ColumnSpan="3"
+                Margin="90,20,90,20"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                StrokeThickness="4">
+                <ScrollView Grid.ColumnSpan="3">
+                    <StackLayout
+                        Margin="0,25,0,0"
+                        Padding="10,0,10,20"
+                        HorizontalOptions="Center"
+                        Spacing="10"
+                        VerticalOptions="Center">
+                        <Label
+                            Margin="0,0,0,50"
+                            FontAttributes="Bold"
+                            FontSize="40"
+                            HorizontalOptions="Center"
+                            Text="Create a Deck"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Padding="20"
+                            Spacing="20"
+                            VerticalOptions="Center">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="Deck Name" />
+                            <Entry
+                                x:Name="DeckNameEntry"
+                                MinimumWidthRequest="400"
+                                Placeholder="Enter a Name" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="Deck Description" />
+                            <Entry x:Name="DeckDescriptionEntry" Placeholder="Enter a Description" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            Margin="10"
+                            Padding="10"
+                            VerticalOptions="Center">
+                            <Label Text="Make Public: Allow other users to import your Deck." />
+                            <CheckBox
+                                x:Name="IsPublicCheckBox"
+                                CheckedChanged="IsPublicCheckBox_CheckedChanged"
+                                HorizontalOptions="Start" />
+                        </StackLayout>
+                        <Label
+                            x:Name="ErrorLabel"
+                            Margin="0,0,0,10"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            IsVisible="False"
+                            TextColor="Red" />
+                    </StackLayout>
+                </ScrollView>
+            </Border>
+            <Button
+                x:Name="NextBtn"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8"
+                Clicked="GoToBuildDeckPage"
+                HeightRequest="20"
+                ImageSource="plussign.png"
+                Text="Next" />
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

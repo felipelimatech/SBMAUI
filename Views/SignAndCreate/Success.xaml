@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.SignAndCreate.Success"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="">
+
+    <ScrollView>
+        <ScrollView.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapRecognized" />
+        </ScrollView.GestureRecognizers>
+
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,auto,*" RowDefinitions="160,auto">
+
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    HorizontalOptions="Fill"
+                    Color="{x:StaticResource Primary}" />
+
+                <Frame
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Margin="0,100,0,0"
+                    Padding="0"
+                    CornerRadius="95"
+                    HorizontalOptions="Center">
+                    <Image
+                        x:Name="UserImage"
+                        Aspect="AspectFill"
+                        HeightRequest="100"
+                        Source="stockprofileimage.png"
+                        WidthRequest="100" />
+                </Frame>
+            </Grid>
+            <VerticalStackLayout Padding="10" Spacing="10">
+
+                <Label
+                    x:Name="WelcomeUserMessage"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center" />
+                <Label HorizontalOptions="Center" Text="You were successfully logged in. Tap to continue." />
+
+                <StackLayout>
+                    <Image
+                        HeightRequest="400"
+                        Source="green_checkmark.jpg"
+                        WidthRequest="400" />
+                </StackLayout>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

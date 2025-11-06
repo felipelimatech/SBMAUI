@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.StudySessionFolder.MyStudiesSessionPageOnlyUserDecks"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="MyStudiesSessionPage">
+
+    <ContentPage.Resources>
+        <Style x:Key="CardView" TargetType="Frame">
+            <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+            <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="50,0,50,0" />
+            <Setter Property="Background" Value="{StaticResource LightBackground}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+        </Style>
+    </ContentPage.Resources>
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="MyStudySessionBtn"
+                Clicked="GoToMyStudiesSessionPage"
+                Text="Study Session" />
+            <Button
+                x:Name="StudyPriorityBtn"
+                Clicked="GoToStudyPriorityPage"
+                Text="Study Priority Session" />
+            <Button Clicked="LogOut" Text="Logout" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+    <Grid
+        ColumnDefinitions="*,*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <StackLayout Grid.ColumnSpan="3" Margin="0,40,0,0">
+            <Label
+                FontAttributes="Bold"
+                FontSize="35"
+                HorizontalOptions="Center"
+                Text="My Studies Session"
+                VerticalOptions="Center" />
+            <Label
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Select a Deck to Start a Session with or Toggle on to study Decks in a Deck Group"
+                VerticalOptions="Center" />
+            <Switch
+                x:Name="styleSwitch"
+                Margin="100,0,0,0"
+                HorizontalOptions="Start"
+                IsToggled="False"
+                Toggled="styleSwitch_Toggled"
+                VerticalOptions="Start" />
+            <!--<Label Grid.Column="1" Grid.Row="0"  FontSize="18" Text="Deck Groups"/>-->
+            <Label
+                x:Name="ErrorLabel"
+                HorizontalOptions="Center"
+                IsVisible="false"
+                Text="Select a Deck you wish to study:"
+                TextColor="Red"
+                VerticalOptions="Center" />
+            <Label
+                x:Name="ChosenDeckLabel"
+                Margin="0,5"
+                HorizontalOptions="Center"
+                IsVisible="false"
+                TextColor="ForestGreen"
+                VerticalOptions="Center" />
+        </StackLayout>
+        <ListView
+            x:Name="UserDecksOnlyListView"
+            Grid.ColumnSpan="3"
+            Margin="0,245,0,20"
+            ItemSelected="UserDeckOnlyListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame Padding="0" Style="{StaticResource CardView}">
+                                <Grid Padding="0" ColumnDefinitions="*,*">
+
+                                    <Label
+                                        Grid.ColumnSpan="2"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Deck.DeckName}"
+                                        VerticalOptions="Center">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="PointerOver">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                                            <Setter Property="TextColor" Value="White" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="white" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="PointerOver">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="white" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="white" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="8"
+            BackgroundColor="ForestGreen"
+            Clicked="BeginSession"
+            HeightRequest="20"
+            Text="Start" />
+    </Grid>
+
+</ContentPage>

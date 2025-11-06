@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.MyStudies.ImportDeckPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ImportDeckPage">
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="DashboardBtn"
+                Clicked="GoToDashboardPage"
+                Text="Dashboard" />
+            <Button
+                x:Name="FlashcardBtn"
+                Clicked="GoToFlashcardPage"
+                Text="Flashcards" />
+            <Button
+                x:Name="DeckBtn"
+                Clicked="GoToDeckPage"
+                Text="Decks" />
+            <Button
+                x:Name="DeckGroupBtn"
+                Clicked="GoToDeckGroupPage"
+                Text="Deck Groups" />
+            <Button Clicked="LogOut" Text="Logout" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <Border
+        HeightRequest="650"
+        Stroke="{StaticResource Primary}"
+        StrokeShape="RoundRectangle 10,10,10,10"
+        StrokeThickness="4"
+        WidthRequest="700">
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="DeckGroup Details" />
+            <Label Margin="0,10,0,80" Text="Select a Deck to add to this Deck Group" />
+            <Label
+                x:Name="CurrentDeckGroupLabel"
+                Margin="0,0,0,40"
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+            <Label
+                x:Name="DeckNameLabel"
+                Margin="0,10"
+                FontSize="16"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+            <CollectionView x:Name="FlashcardDetails">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding FlashCard.FlashCardQuestion}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Picker
+                x:Name="DeckPicker"
+                Title="Choose a Deck:"
+                HorizontalOptions="Center"
+                ItemDisplayBinding="{Binding Deck.DeckName}"
+                SelectedIndexChanged="DeckPicker_SelectedIndexChanged"
+                SelectedItem="{Binding SelectedUserDeck}"
+                WidthRequest="275" />
+
+            <Button
+                x:Name="AddDeckToDeckGroupBtn"
+                Margin="0,50,0,0"
+                Clicked="AddDeckToDeckGroupBtn_Clicked"
+                Text="Add to DeckGroup"
+                WidthRequest="150" />
+
+            <Label
+                x:Name="ErrorLabel"
+                IsVisible="false"
+                Text="Please Select a deck from the drop-down"
+                TextColor="Red" />
+        </VerticalStackLayout>
+    </Border>
+</ContentPage>

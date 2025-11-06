@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.MyStudies.AddFlashcardToDeckPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="DashboardBtn"
+                Clicked="GoToDashboardPage"
+                Text="Dashboard" />
+            <Button
+                x:Name="FlashcardBtn"
+                Clicked="GoToFlashcardPage"
+                Text="Flashcards" />
+            <Button
+                x:Name="DeckBtn"
+                Clicked="GoToDeckPage"
+                Text="Decks" />
+            <Button
+                x:Name="DeckGroupBtn"
+                Clicked="GoToDeckGroupPage"
+                Text="Deck Groups" />
+            <Button Clicked="LogOut" Text="Logout" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <Border
+        HeightRequest="450"
+        Stroke="{StaticResource Primary}"
+        StrokeShape="RoundRectangle 10,10,10,10"
+        StrokeThickness="4"
+        WidthRequest="650">
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Label
+                Margin="0,10,0,30"
+                FontAttributes="Bold"
+                FontSize="40"
+                HorizontalOptions="Center"
+                Text="Flashcard Details" />
+
+            <Grid
+                Margin="0,0,0,40"
+                ColumnDefinitions="120, *"
+                HorizontalOptions="Center">
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="100"
+                    Source="{Binding FlashCardQuestionImage, TargetNullValue='stockprofileimage.png'}"
+                    WidthRequest="100" />
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    Padding="10"
+                    VerticalOptions="Center">
+                    <Label x:Name="CurrentFlashCardLabel" FontAttributes="Bold" />
+                    <Label x:Name="CurrentFlashcardAnswer" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Picker
+                x:Name="DeckPicker"
+                Title="Choose a Deck:"
+                HorizontalOptions="Center"
+                ItemDisplayBinding="{Binding Deck.DeckName}"
+                SelectedIndexChanged="DeckPicker_SelectedIndexChanged"
+                SelectedItem="{Binding SelectedUserDeck}"
+                WidthRequest="275" />
+
+            <Button
+                x:Name="AddFlashcardToDeckBtn"
+                Margin="0,50,0,0"
+                Clicked="AddFlashcardToDeckBtn_Clicked"
+                Text="Add to Deck"
+                WidthRequest="150" />
+
+            <Label
+                x:Name="ErrorLabel"
+                IsVisible="false"
+                Text="Please Select a deck from the drop-down"
+                TextColor="Red" />
+        </VerticalStackLayout>
+    </Border>
+
+
+</ContentPage>

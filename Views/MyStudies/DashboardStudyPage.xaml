@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.MyStudies.DashboardStudyPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="DashboardStudyPage">
+
+    <ContentPage.Resources>
+        <Style x:Key="CardView" TargetType="Frame">
+            <Setter Property="BorderColor" Value="#DDDDDD" />
+            <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="50,0,50,0" />
+            <Setter Property="Background" Value="{StaticResource LightBackground}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="DashboardBtn"
+                Clicked="GoToDashboardPage"
+                Text="Dashboard" />
+            <Button
+                x:Name="FlashcardBtn"
+                Clicked="GoToFlashcardPage"
+                Text="Flashcards" />
+            <Button
+                x:Name="DeckBtn"
+                Clicked="GoToDeckPage"
+                Text="Decks" />
+            <Button
+                x:Name="DeckGroupBtn"
+                Clicked="GoToDeckGroupPage"
+                Text="Deck Groups" />
+            <Button Clicked="LogOut" Text="Logout" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <Grid
+        ColumnDefinitions="*,*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+
+        <StackLayout Grid.Column="1">
+            <Label
+                x:Name="NoCardsToStudyLabel"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Center"
+                IsVisible="False"
+                VerticalOptions="Center" />
+        </StackLayout>
+
+        <CollectionView
+            x:Name="StudySessionFlashCardsListView"
+            Grid.ColumnSpan="3"
+            Margin="0,120,0,0"
+            BackgroundColor="Transparent"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Frame
+                            Padding="0"
+                            HeightRequest="125"
+                            Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="FlashCardSelected" />
+                            </Frame.GestureRecognizers>
+                            <Grid Padding="0" ColumnDefinitions="125, *">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="125"
+                                    Source="stockprofileimage.png"
+                                    WidthRequest="125" />
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    Padding="10"
+                                    VerticalOptions="Center">
+                                    <Label Text="{Binding FlashCard.FlashCardQuestion}" TextColor="Red" />
+                                    <Label>
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{} From {0}-{1}">
+                                                <Binding Path="StudySession.Deck.DeckName" />
+                                                <Binding Path="StudySession.StartTime" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            x:Name="DashboardStatsBtn"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="8"
+            Clicked="GoToDashboardPage"
+            Text="Stats" />
+        <Button
+            x:Name="DashboardStudyBtn"
+            Grid.Row="1"
+            Margin="8"
+            Clicked="GoToDashboardStudyPage"
+            Text="Study" />
+        <Button
+            x:Name="DashboardHistoryBtn"
+            Grid.Row="1"
+            Grid.Column="3"
+            Margin="8"
+            Clicked="GoToDashboardHistoryPage"
+            Text="History" />
+    </Grid>
+
+</ContentPage>

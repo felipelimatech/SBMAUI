@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.Edit.EditUserPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="EditUserPage">
+    <ContentPage.Resources>
+        <Style x:Key="CardView" TargetType="Frame">
+            <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+            <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="50,0,50,0" />
+            <Setter Property="Background" Value="{StaticResource LightBackground}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="DashboardBtn"
+                Clicked="GoToDashboardPage"
+                Text="Dashboard" />
+            <Button
+                x:Name="FlashcardBtn"
+                Clicked="GoToFlashcardPage"
+                Text="Flashcards" />
+            <Button
+                x:Name="DeckBtn"
+                Clicked="GoToDeckPage"
+                Text="Decks" />
+            <Button
+                x:Name="DeckGroupBtn"
+                Clicked="GoToDeckGroupPage"
+                Text="Deck Groups" />
+            <Button Clicked="LogOut" Text="Logout" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="5"
+            RowDefinitions="*,Auto"
+            RowSpacing="0">
+            <Border
+                Grid.ColumnSpan="2"
+                Margin="90,20,90,20"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                StrokeThickness="4">
+                <ScrollView Grid.ColumnSpan="2">
+                    <StackLayout
+                        Margin="0,15,0,0"
+                        Padding="10,0,10,20"
+                        HorizontalOptions="Center"
+                        Spacing="10"
+                        VerticalOptions="Center">
+                        <Label
+                            Margin="0,0,0,30"
+                            FontAttributes="Bold"
+                            FontSize="40"
+                            HorizontalOptions="Center"
+                            Text="Edit User"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Padding="20"
+                            Spacing="20"
+                            VerticalOptions="Center">
+
+
+                            <Label
+                                Margin="0,15,0,0"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="First Name" />
+                            <Entry
+                                x:Name="FirstNameEntry"
+                                MinimumWidthRequest="400"
+                                Placeholder="Enter First Name" />
+
+                            <Label
+                                Margin="0,15,0,0"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="Last Name" />
+                            <Entry
+                                x:Name="LastNameEntry"
+                                MinimumWidthRequest="400"
+                                Placeholder="Enter Last Name" />
+
+                            <Label
+                                Margin="0,15,0,0"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="Email" />
+                            <Entry
+                                x:Name="EmailEntry"
+                                MinimumWidthRequest="400"
+                                Placeholder="Enter Email" />
+
+                            <Label
+                                Margin="0,15,0,0"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="Username" />
+                            <Entry
+                                x:Name="UserNameEntry"
+                                MinimumWidthRequest="400"
+                                Placeholder="Enter UserName" />
+
+                            <Label
+                                Margin="0,15,0,0"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="Profile Picture" />
+                            <Entry
+                                x:Name="UserImageEntry"
+                                MinimumWidthRequest="400"
+                                Placeholder="Provide a Link to picture here (Optional)" />
+
+
+                            <Label
+                                Margin="0,15,0,0"
+                                FontSize="16"
+                                Text="Upload Profile Picture"
+                                WidthRequest="400" />
+                            <HorizontalStackLayout WidthRequest="400">
+                                <ImageButton
+                                    x:Name="UploadImageBtn"
+                                    Clicked="UploadImageBtn_Clicked"
+                                    HeightRequest="25"
+                                    Source="upload.png"
+                                    WidthRequest="25" />
+                                <Image
+                                    x:Name="ProfileImage"
+                                    HeightRequest="50"
+                                    WidthRequest="50" />
+                            </HorizontalStackLayout>
+
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            Margin="10"
+                            VerticalOptions="Center">
+                            <Label
+                                x:Name="WarningLabel"
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                IsVisible="false"
+                                TextColor="Red" />
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Border>
+            <Button
+                x:Name="FinishEditingBtn"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="8"
+                Clicked="FinishEditingBtn_Clicked"
+                HeightRequest="20"
+                Text="Done Editing" />
+            <Button
+                x:Name="CancelBtn"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="8"
+                Clicked="CancelBtn_Clicked"
+                HeightRequest="20"
+                IsVisible="false"
+                Text="Cancel" />
+            <Button
+                x:Name="DeleteBtn"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8"
+                BackgroundColor="Red"
+                Clicked="DeleteBtn_Clicked"
+                Text="Delete User" />
+            <Button
+                x:Name="FinishDeleteBtn"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8"
+                BackgroundColor="Red"
+                Clicked="FinishDeleteBtn_Clicked"
+                HeightRequest="20"
+                IsVisible="false"
+                Text="Finish Delete" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

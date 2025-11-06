@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.SignAndCreate.SignIn"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,auto,*" RowDefinitions="160,auto">
+
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    HorizontalOptions="Fill"
+                    Color="{x:StaticResource Primary}" />
+
+                <Frame
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Margin="0,100,0,0"
+                    Padding="0"
+                    CornerRadius="95"
+                    HorizontalOptions="Center">
+                    <Image
+                        HeightRequest="200"
+                        HorizontalOptions="Center"
+                        Source="ntclogo.png"
+                        VerticalOptions="Center"
+                        WidthRequest="200" />
+                </Frame>
+            </Grid>
+            <VerticalStackLayout Padding="10" Spacing="10">
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="Welcome to StudyBuddy" />
+
+                <Label
+                    FontSize="16"
+                    Text="Username"
+                    WidthRequest="400" />
+                <Grid Padding="5" WidthRequest="400">
+                    <Frame BackgroundColor="White" />
+                    <Entry
+                        x:Name="UserNameEntry"
+                        Placeholder="UserName"
+                        TextColor="Black" />
+                </Grid>
+
+                <Label
+                    FontSize="16"
+                    Text="Password"
+                    WidthRequest="400" />
+                <Grid Padding="5" WidthRequest="400">
+                    <Frame BackgroundColor="White" />
+                    <Entry
+                        x:Name="PasswordEntry"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        TextColor="Black" />
+                </Grid>
+
+                <Label
+                    x:Name="Error"
+                    Padding="0"
+                    HorizontalOptions="Center" />
+                <Button
+                    x:Name="ForgotPassword"
+                    BackgroundColor="White"
+                    BorderColor="White"
+                    Clicked="ForgotPassword_Clicked"
+                    Text="Forgot Password?"
+                    TextColor="Blue"
+                    VerticalOptions="Center"
+                    WidthRequest="200" />
+
+                <Button
+                    x:Name="SignInBtn"
+                    Margin="0,10"
+                    Clicked="CompleteSignIn"
+                    Text="Sign in"
+                    VerticalOptions="Center"
+                    WidthRequest="200" />
+                <Button
+                    x:Name="CreateAccountBtn"
+                    Margin="0,10"
+                    Clicked="GoToAccountCreation"
+                    Text="Create Account"
+                    VerticalOptions="Center"
+                    WidthRequest="200" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

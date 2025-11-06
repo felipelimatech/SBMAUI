@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.StudySessionFolder.SessionStatsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="">
+    <ScrollView BackgroundColor="{StaticResource Primary}">
+        <Grid>
+            <StackLayout
+                x:Name="Box"
+                Margin="10"
+                VerticalOptions="Center"
+                WidthRequest="500">
+                <Border
+                    Padding="10"
+                    BackgroundColor="White"
+                    Stroke="Black"
+                    StrokeThickness="2"
+                    VerticalOptions="Center">
+                    <StackLayout Margin="10">
+                        <StackLayout Grid.ColumnSpan="2" Margin="0,10,0,0">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="40"
+                                HorizontalOptions="Center"
+                                Text="Congrats!"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="RunTime"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+                            <ProgressBar
+                                x:Name="StatsProgressBar"
+                                HeightRequest="70"
+                                ProgressColor="Green"
+                                WidthRequest="200" />
+                            <Label
+                                x:Name="ProgressLabel"
+                                FontSize="16"
+                                HorizontalOptions="Center" />
+                            <Label
+                                x:Name="CorrectFlashcardCount"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="IncorrectFlashcardCount"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="TotalCardsText"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </StackLayout>
+                </Border>
+            </StackLayout>
+            <StackLayout
+                Margin="20"
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="End">
+                <Button
+                    BackgroundColor="White"
+                    Clicked="GoToStudySession"
+                    Text="Done"
+                    TextColor="ForestGreen"
+                    WidthRequest="100" />
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

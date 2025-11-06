@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.Share.ShareDeckPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ShareDeckPage">
+    <!--  this page will let a user pick a deck and the option they want to do for sharing before moving on to pick a user  -->
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="DashboardBtn"
+                Clicked="GoToDashboardPage"
+                Text="Dashboard" />
+            <Button
+                x:Name="FlashcardBtn"
+                Clicked="GoToFlashcardPage"
+                Text="Flashcards" />
+            <Button
+                x:Name="DeckBtn"
+                Clicked="GoToDeckPage"
+                Text="Decks" />
+            <Button
+                x:Name="DeckGroupBtn"
+                Clicked="GoToDeckGroupPage"
+                Text="Deck Groups" />
+            <Button Clicked="LogOut" Text="Logout" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="5"
+            RowDefinitions="*,Auto"
+            RowSpacing="0">
+            <Border
+                Grid.ColumnSpan="2"
+                Margin="80,30,80,30"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                StrokeThickness="4">
+                <ScrollView Grid.ColumnSpan="2">
+                    <StackLayout
+                        Margin="0,15,0,0"
+                        Padding="0,0,10,20"
+                        HorizontalOptions="Center"
+                        Spacing="10"
+                        VerticalOptions="Center">
+                        <Label
+                            Margin="0,0,0,10"
+                            FontAttributes="Bold"
+                            FontSize="40"
+                            HorizontalOptions="Center"
+                            Text="Share Deck"
+                            VerticalOptions="Center" />
+                        <Label
+                            Margin="0,0,0,30"
+                            FontSize="12"
+                            HorizontalOptions="Center"
+                            Text="Pick a Deck to Share and how you want to share it."
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Padding="10"
+                            Spacing="20"
+                            VerticalOptions="Center">
+                            <Picker
+                                x:Name="DeckPicker"
+                                Title="Select a Deck to Share."
+                                HorizontalOptions="Center"
+                                ItemDisplayBinding="{Binding Deck.DeckName}"
+                                SelectedIndexChanged="DeckPicker_SelectedIndexChanged" />
+                        </StackLayout>
+                        <StackLayout Margin="0,5,0,10" HorizontalOptions="Center">
+                            <Label
+                                x:Name="ErrorLabel"
+                                HorizontalOptions="Center"
+                                IsVisible="false"
+                                TextColor="Red" />
+                            <Label
+                                x:Name="ErrorLabel2"
+                                HorizontalOptions="Center"
+                                IsVisible="false"
+                                TextColor="Red" />
+                        </StackLayout>
+
+                        <StackLayout Grid.ColumnSpan="2" Margin="0,40,0,0">
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                Text="Copy Deck and editing access to Deck"
+                                TextDecorations="Underline"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="1"
+                                Margin="20,20"
+                                HorizontalOptions="Center"
+                                Text="Or"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                Text="Clone Deck and view only access to Deck"
+                                TextDecorations="Underline"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+
+            </Border>
+
+            <Button
+                x:Name="CopyBtn"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="8"
+                Clicked="CopyBtn_Clicked"
+                HeightRequest="20"
+                Text="Direct Copy" />
+            <Button
+                x:Name="CloneBtn"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8"
+                Clicked="CloneBtn_Clicked"
+                Text="Clone" />
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

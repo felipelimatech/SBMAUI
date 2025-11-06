@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.Admin.AdminHomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AdminHomePage">
+
+    <ContentPage.Resources>
+        <Style x:Key="CardView" TargetType="Frame">
+            <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+            <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="50,0,50,0" />
+            <Setter Property="Background" Value="{StaticResource LightBackground}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button Clicked="LogOut" Text="Logout" />
+            <!--<Button x:Name="AdminHomeBtn" Clicked="GoToAdminHomePage" Text="Admin Home"></Button>-->
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="160,auto,*" RowDefinitions="160,auto">
+
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    HorizontalOptions="Fill"
+                    Color="{x:StaticResource Primary}" />
+
+                <Frame
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Margin="0,100,0,0"
+                    Padding="0"
+                    CornerRadius="55"
+                    HorizontalOptions="Center">
+                    <Image
+                        HeightRequest="100"
+                        Source="ntclogo.png"
+                        WidthRequest="100" />
+                </Frame>
+            </Grid>
+            <VerticalStackLayout Padding="10" Spacing="10">
+
+                <StackLayout Margin="0,30">
+                    <Frame
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Padding="0"
+                        CornerRadius="80"
+                        HeightRequest="150"
+                        HorizontalOptions="Center"
+                        IsClippedToBounds="True"
+                        WidthRequest="150">
+                        <Image
+                            x:Name="UserImage"
+                            Aspect="AspectFill"
+                            HeightRequest="150"
+                            WidthRequest="150" />
+                    </Frame>
+                    <Label x:Name="UserNameText" HorizontalOptions="Center" />
+                    <Label
+                        Margin="0,15"
+                        Padding="10"
+                        FontSize="Medium"
+                        HorizontalOptions="Center"
+                        Text="As an Admin, you can delete and edit from the areas below." />
+                </StackLayout>
+                <VerticalStackLayout
+                    Padding="10"
+                    HorizontalOptions="Center"
+                    Spacing="30">
+                    <Button
+                        x:Name="AdminDeckGroupBtn"
+                        Clicked="GoToDeckGroupPage"
+                        FontSize="Medium"
+                        Text="Deck Groups"
+                        WidthRequest="200" />
+                    <Button
+                        x:Name="AdminDeckButton"
+                        Clicked="GoToDeckPage"
+                        FontSize="Medium"
+                        Text="Decks"
+                        WidthRequest="200" />
+                    <Button
+                        x:Name="AdminFlashCardBtn"
+                        Clicked="GoToFlashcardPage"
+                        FontSize="Medium"
+                        Text="Flashcards"
+                        WidthRequest="200" />
+                    <Button
+                        x:Name="AdminUsersBtn"
+                        Clicked="GoToUsersPage"
+                        FontSize="Medium"
+                        Text="Users"
+                        WidthRequest="200" />
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

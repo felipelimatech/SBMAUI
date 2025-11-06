@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SBMAUI.Views.StudySessionFolder.StudyPriorityPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="StudyPriorityPage">
+
+    <ContentPage.Resources>
+        <Style x:Key="CardView" TargetType="Frame">
+            <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+            <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="50,0,50,0" />
+            <Setter Property="Background" Value="{StaticResource LightBackground}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+        </Style>
+    </ContentPage.Resources>
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                x:Name="HomeBtn"
+                Clicked="GoToHomePage"
+                Text="Home" />
+            <Button
+                x:Name="MyStudySessionBtn"
+                Clicked="GoToMyStudiesSessionPage"
+                Text="Study Session" />
+            <Button
+                x:Name="StudyPriorityBtn"
+                Clicked="GoToStudyPriorityPage"
+                Text="Study Priority Session" />
+            <Button Clicked="LogOut" Text="Logout" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+    <Grid
+        ColumnDefinitions="*,*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <StackLayout Grid.ColumnSpan="3" Margin="0,50,0,0">
+            <Label
+                FontAttributes="Bold"
+                FontSize="35"
+                HorizontalOptions="Center"
+                Text="Study Priority Session"
+                VerticalOptions="Center" />
+            <Label
+                Padding="10"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Here are all Flashcards you can re-study."
+                VerticalOptions="Center" />
+            <Label
+                Padding="0,10"
+                HorizontalOptions="Center"
+                Text="Select a Flashcard:" />
+            <Label
+                x:Name="ChosenCardLabel"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="ForestGreen"
+                VerticalOptions="Center" />
+        </StackLayout>
+        <ListView
+            x:Name="StudySessionFlashCardsListView"
+            Grid.ColumnSpan="3"
+            Margin="0,250,0,0"
+            ItemSelected="FlashCardSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame Padding="0" Style="{StaticResource CardView}">
+                                <Grid Padding="0" ColumnDefinitions="*,*">
+                                    <StackLayout Grid.ColumnSpan="2" VerticalOptions="Center">
+                                        <StackLayout Margin="10,5" Orientation="Vertical">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="20"
+                                                HorizontalOptions="Center"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding FlashCard.FlashCardQuestion}"
+                                                TextColor="Red"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                HorizontalOptions="Center"
+                                                HorizontalTextAlignment="Center"
+                                                VerticalOptions="Center">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{} From {0}-{1}">
+                                                        <Binding Path="StudySession.Deck.DeckName" />
+                                                        <Binding Path="StudySession.StartTime" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="PointerOver">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="white" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+            x:Name="DoStudySessionBtn"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="8"
+            BackgroundColor="ForestGreen"
+            Clicked="BeginStudySession"
+            HeightRequest="20"
+            Text="Start" />
+    </Grid>
+
+</ContentPage>
